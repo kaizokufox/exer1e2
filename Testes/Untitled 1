@@ -1,0 +1,30 @@
+/******CLIENTE******/
+DROP TABLE IF EXISTS Cliente;
+CREATE TABLE Cliente(
+	ID INT(14) NOT NULL,
+	nome VARCHAR(30) NOT NULL,
+    telefone CHAR(20) NOT NULL,
+    email CHAR (50) NULL,
+    CONSTRAINT PK_Cliente PRIMARY KEY(ID)
+);
+/*********PRODUTO******/
+DROP TABLE IF EXISTS Produto;
+CREATE TABLE Produto(
+	Codigo INT NOT NULL AUTO_INCREMENT,
+    Nome VARCHAR(30) NOT NULL,
+    Preco DECIMAL(8,2) NOT NULL,
+    CONSTRAINT PK_Produtos PRIMARY KEY (Codigo)
+);
+
+/****COMPRA*****/
+DROP TABLE IF EXISTS Compra;
+CREATE TABLE Compra(
+	Codigo INT NOT NULL AUTO_INCREMENT,
+    ID_Cliente CHAR(14) NOT NULL,
+    Codigo_Produto INT NULL,
+    FormaPagamento DECIMAL(8,2) NOT NULL,
+    DataA DATE NOT NULL,
+    CONSTRAINT PK_Compra PRIMARY KEY(Codigo),
+    CONSTRAINT FK_Cliente FOREIGN KEY(ID_Cliente) REFERENCES Cliente(ID),
+    CONSTRAINT FK_Produto_compra FOREIGN KEY(Codigo_Produto) REFERENCES Produto(Codigo)
+    );
